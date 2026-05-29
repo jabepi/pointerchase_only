@@ -524,12 +524,6 @@ int main(int argc, char *argv[])
     }
     wall_end = now_cycles();
 
-    if (opts.m5_enabled)
-    {
-        m5_dump_stats(0, 0);
-        m5_exit(0);
-    }
-
     if (pointer_chase_total_loads > 0ULL && pointer_chase_total_cycles > 0ULL)
         latency_cycles = (double)pointer_chase_total_cycles / (double)pointer_chase_total_loads;
 
@@ -546,6 +540,13 @@ int main(int argc, char *argv[])
            latency_cycles,
            latency_ns,
            total_time_ns);
+
+
+    if (opts.m5_enabled)
+    {
+        m5_dump_stats(0, 0);
+        m5_exit(0);
+    }
 
     free(chase_array);
     return 0;
